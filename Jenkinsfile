@@ -23,5 +23,21 @@ pipeline {
                     archive 'target/*.jar'
             }
         }
+
+        stage('Parallel Execution Stage') {
+            steps {
+                parallel(
+                    a:{
+                        bat "mvn package"
+                    },
+                    b:{
+                        bat "mvn package"
+                    },
+                    c:{
+                        bat "mvn package"
+                    }                    
+                )
+            }
+        }
     }
 }
